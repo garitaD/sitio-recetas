@@ -17,8 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Routing
+//Routing 
+//-> cuando los usuarios visiten /recetas se va a ejecutar el controlador RectaController
+//name es como un alias que nos permite hacer referencia a él en los enlaces en html
+
+Route::get('/recetas', 'RecetaController@index')->name('recetas.index');
+Route::get('/recetas/create', 'RecetaController@create')->name('recetas.create');
 
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

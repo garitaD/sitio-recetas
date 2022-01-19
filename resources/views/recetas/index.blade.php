@@ -3,18 +3,37 @@
 {{-- Dentro de las vistas laravel/blade incluye los "yield" que son espacios para insertar contenido
 para insertar en esas secciones se hace así: --}}
 
+@section('botones')
+    <a href="{{route('recetas.create')}}" class="btn btn-primary mr-2 text-white">Crear Receta</a>
+    
+
+@endsection
+
 @section('content')
-    <h1>Recetas</h1>
+    <h2 class="text-center mb-5">Administra tus recetas</h2>
 
-    @foreach($recetas as $receta)
-        <li>{{$receta}}</li>
-        
-    @endforeach
+    <div class="col-md-10 mx-auto bg-white p-3" >
+        <table class="table">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th scole="col" class="text-center">Titulo</th>
+                    <th scole="col" class="text-center">Categoría</th>
+                    <th scole="col" class="text-center">Acciones</th>
+                </tr>
 
-    <h1>Categorias</h1>
-    @foreach($categorias as $categoria)
-        <li>{{$categoria}}</li>    
-    @endforeach
+                <tbody>
+                    <tr class="text-center">
+                        <td>Pizza</td>
+                        <td>Pizzas</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+
+            </thead>
+        </table>
+    </div>
 
 @endsection
 
