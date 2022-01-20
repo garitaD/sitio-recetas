@@ -30,8 +30,7 @@
 
             <p>
                 <span class="font-weight-bold text-primary">Autor:</span>
-                {{-- TO DO: mostar el usuario --}}
-                {{$receta->user_id}}
+                {{$receta->autor->name}}
             </p>
 
             <div class="ingredientes">

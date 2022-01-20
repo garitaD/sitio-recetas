@@ -16,4 +16,10 @@ class Receta extends Model
         //Usamos belongsTo dado a que la relacion es inversa (lo podemos probar con php artisan tiker || $receta->categoria)
         return $this->belongsTo(CategoriaReceta::class);
     }
+
+    //Obtiene la información del usuario vía FK (belongTo es como decir este user id dónde pertenece)
+    public function autor(){
+        return $this->belongsTo(User::class, 'user_id');// el segundo valor es la FK de esta tabla
+        
+    }
 }

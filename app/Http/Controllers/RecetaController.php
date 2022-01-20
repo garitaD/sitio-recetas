@@ -13,8 +13,9 @@ class RecetaController extends Controller
 {
     //Con esto se crea la url protegida
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth', ['except'=>'show']);
     }
+
     /**
      * Display a listing of the resource.
      *
