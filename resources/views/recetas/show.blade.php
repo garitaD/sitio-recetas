@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>{{$receta}}</h1>
+    {{-- <h1>{{$receta}}</h1> --}}
     <article class="contenido-receta">
         <h1 class="text-center mb-4">{{$receta->titulo}}</h1>
 
@@ -16,10 +16,17 @@
                 <span class="font-weight-bold text-primary">Escrito en:</span>
                 {{$receta->categoria->nombre}}
             </p>
+
             <p>
                 <span class="font-weight-bold text-primary">Fecha:</span>
-                {{$receta->categoria->created_at}}
+                @php
+                    $fecha = $receta->created_at
+                @endphp
+
+                <fecha-receta fecha="{{$fecha}}"></fecha-receta>
+
             </p>
+
 
             <p>
                 <span class="font-weight-bold text-primary">Autor:</span>
