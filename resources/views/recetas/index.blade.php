@@ -12,6 +12,7 @@ para insertar en esas secciones se hace así: --}}
 @section('content')
     <h2 class="text-center mb-5">Administra tus recetas</h2>
 
+
     <div class="col-md-10 mx-auto bg-white p-3" >
         <table class="table">
             <thead class="bg-primary text-light">
@@ -22,13 +23,19 @@ para insertar en esas secciones se hace así: --}}
                 </tr>
 
                 <tbody>
-                    <tr class="text-center">
-                        <td>Pizza</td>
-                        <td>Pizzas</td>
-                        <td>
+                    @foreach($recetas as $receta)
 
-                        </td>
-                    </tr>
+                        <tr class="text-center">
+                            <td>{{$receta->titulo}}</td>
+                            <td>{{$receta->categoria->nombre}}</td>
+                            <td>
+                                <a href="" class="btn btn-danger mr-1">Eliminar</a>
+                                <a href="" class="btn btn-dark mr-1">Editar</a>
+                                <a href="" class="btn btn-success mr-1">Ver</a>
+                            </td>
+                        </tr>   
+                    @endforeach
+                    
                 </tbody>
 
             </thead>
