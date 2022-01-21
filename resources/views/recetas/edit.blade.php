@@ -21,7 +21,7 @@ para insertar en esas secciones se hace así: --}}
 
                 @method('PUT')
                 <div class="form-group">
-                    <label for="titutlo">Titulo Receta</label>
+                    <label for="titulo">Titulo Receta</label>
                     <input type="text" 
                         name="titulo" 
                         class="form-control @error('titulo') is-invalid @enderror"
