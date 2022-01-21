@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -13,25 +14,25 @@ class UsuarioSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-        'name' => 'DGarita',
-        'email' => 'mail@mail.com',
-        'password' => Hash::make('12345678'),
-        'url' => 'http://dgarita.xyz',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s'),
 
+        $user = User::create([
+            'name' => 'DGarita',
+            'email' => 'mail@mail.com',
+            'password' => Hash::make('12345678'),
+            'url' => 'http://dgarita.xyz'
         ]);
+        //$user->perfil()->create();
 
-        DB::table('users')->insert([
-        'name' => 'Andres',
-        'email' => 'mail2@mail.com',
-        'password' => Hash::make('12345678'),
-        'url' => 'http://dgarita.xyz',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s'),
-
+        $user2 = User::create([
+            'name' => 'Andres',
+            'email' => 'mail2@mail.com',
+            'password' => Hash::make('12345678'),
+            'url' => 'http://dgarita.xyz'
         ]);
+        //$user2->perfil()->create();
+        
+
+       
     }
 }
 
