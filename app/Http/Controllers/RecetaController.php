@@ -121,7 +121,8 @@ class RecetaController extends Controller
      */
     public function edit(Receta $receta)
     {
-        //
+        $categorias = CategoriaReceta::all(['id', 'nombre']);
+        return view('recetas.edit', compact('categorias', 'receta'));
     }
 
     /**
@@ -133,7 +134,48 @@ class RecetaController extends Controller
      */
     public function update(Request $request, Receta $receta)
     {
-        //
+
+        //Revisar el policy
+        $this->authorize('update', $receta);
+        
+
+        $data = request()->validate([
+            'titulo' => 'required|min:6',
+            'preparacion'=> 'required',
+            'ingredientes'=> 'required',
+            'imagen'=> 'image',
+            'categoria' =>'required' 
+        ]);
+
+        //Asignar los valores
+        $receta->titulo = $data['titulo'];
+        $receta->preparacion = $data['preparacion'];
+        $receta->ingredientes = $data['ingredientes'];
+        $receta->categoria_id = $data['categoria'];
+        //aquí debeido a que dentro del blade el name es categoria se pone así
+
+        //Si el usuario sube una nueva imagen
+        if(request('imagen')){
+            //Obtener ruta de la imagen
+            $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
+
+             //Resize de la imagen
+            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
+            $img->save();
+
+            //Asignar al objeto
+            $receta->imagen = $ruta_imagen;
+
+        }
+
+        $receta->save();
+        //return $receta;
+
+        //Redireccionar
+        return redirect()->action('RecetaController@index');
+
+       
+
     }
 
     /**
@@ -144,6 +186,13 @@ class RecetaController extends Controller
      */
     public function destroy(Receta $receta)
     {
-        //
+        //Ejecutar el Policy
+        $this->authorize('delete', $receta);
+
+        //Eliminar la receta
+        $receta->delete();
+
+        return redirect()->action('RecetaController@index');
+        return "Desde Destroy";
     }
 }

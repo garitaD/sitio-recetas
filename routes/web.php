@@ -27,4 +27,9 @@ Route::post('/recetas/create', 'RecetaController@store')->name('recetas.store');
 Route::get('/recetas/{receta}', 'RecetaController@show')->name('recetas.show');
 //{receta} lo que hace es obtener el id 
 
+Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edit');
+Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update');
+Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
+
+
 Auth::routes();
