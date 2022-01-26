@@ -3,6 +3,7 @@ body{
 }
 trix-editor{
     min-height: 300px;
+    height: auto !important;
 }
 .bg-primary .navbar-brand{
     color: white;
@@ -12,4 +13,8 @@ trix-editor{
     &:hover{
         color: white;
     }
+}
+
+.icono{
+    width: 36px;
 }

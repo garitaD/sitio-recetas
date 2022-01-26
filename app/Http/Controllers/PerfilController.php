@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Perfil;
+use App\Receta;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 class PerfilController extends Controller
 {
+
+    public function __construct(){
+        //se habilita el middleware de autenticación | para que se tenga que estar autenticado menos en el metodo show
+        $this->middleware('auth', ['except' => 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +53,14 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        return view('perfiles.show', compact('perfil'));
+        $perfilUsuario = $perfil->user_id;
+        //Obtener las recetas con paginación
+        
+        $recetas = Receta::where('user_id', $perfilUsuario)->paginate(8);
+
+        return view('perfiles.show', compact('perfil', 'recetas'));
+
+        
     }
 
     /**
@@ -58,6 +71,11 @@ class PerfilController extends Controller
      */
     public function edit(Perfil $perfil)
     {
+        //La vista que se quiere proteger es la de edit 
+        //Ejecuar el Policy | Este Policy se encarga de bloquear la vista en caso de que alguien quiera ver el formulario de editar y no sea el usuario
+        
+        $this->authorize('view', $perfil);
+
         return view('perfiles.edit', compact('perfil'));
     }
 
@@ -70,6 +88,9 @@ class PerfilController extends Controller
      */
     public function update(Request $request, Perfil $perfil)
     {
+
+        //Ejecuar el Policy
+        $this->authorize('update', $perfil);
 
         // dd($request['imagen']);
 

@@ -4,8 +4,8 @@
 para insertar en esas secciones se hace así: --}}
 
 @section('botones')
-    <a href="{{route('recetas.create')}}" class="btn btn-primary mr-2 text-white">Crear Receta</a>
-    
+
+    @include('ui.navegacion')
 
 @endsection
 
@@ -33,9 +33,6 @@ para insertar en esas secciones se hace así: --}}
                                     receta-id={{$receta->id}}
                                 ></eliminar-receta>
                                
-                                    
-                               
-                                
                                 <a href="{{ route('recetas.edit', ['receta'=>$receta->id])}}" class="btn btn-dark mb-2 d-block">Editar</a>
                                 <a href="{{ route('recetas.show', ['receta'=>$receta->id])}}" class="btn btn-success mb-2 d-block">Ver</a>
                             </td>
@@ -46,6 +43,11 @@ para insertar en esas secciones se hace así: --}}
 
             </thead>
         </table>
+        <div class="col-12 mt-4 justify-contend-center d-flex">
+            {{$recetas->links()}}
+
+        </div>
+        
     </div>
 
 @endsection
