@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//Name es el nombre con el cual se va a hacer la referencia
+Route::get('/', 'InicioController@index')->name('inicio.index');
 
 //Routing 
 //-> cuando los usuarios visiten /recetas se va a ejecutar el controlador RectaController
